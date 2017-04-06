@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #bbb;
+    text-align: center;
+}
+
+main {
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: normal;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+#compass {
+    position: relative;
+    height: 16rem;
+    width: 16rem;
+}
+
+#rose {
+    position: absolute;
+    height: 16rem;
+    width: 16rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    border: solid 0.5rem red;
+    border-radius: 50%;
+}
+
+#needle {
+    height: 3rem;
+    width: 3rem;
+    margin-top: -1rem;
+}
+
+.n,
+.e,
+.s,
+.w {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.n {
+    top: 0;
+    left: 50%;
+    margin-left: -1rem;
+    color: #000;
+    font-weight: bold;
+}
+
+.e {
+    top: 50%;
+    margin-top: -1rem;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+.s {
+    bottom: 0;
+    left: 50%;
+    margin-left: -1rem;
+    transform: rotate(180deg);
+}
+
+.w {
+    top: 50%;
+    left: 0;
+    margin-top: -1rem;
+    transform: rotate(270deg);
+}
+
+.no-api {
+    display: none;
+}

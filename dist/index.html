@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="en" manifest="cache.manifest">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Compass</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        
+        <link rel="manifest" href="manifest.json">
+
+    </head>
+    <body>
+        
+        <main>
+
+            <h1>Offline compass demo</h1>
+            
+            <div id="compass">
+                
+                <div id="rose">
+                    <span id="needle">
+                        <svg height="100%" width="100%" viewBox="0 0 100 100">
+                            <polygon points="50,0 100,100 0,100" style="fill:red;" />
+                        </svg>    
+                    </span>
+                    <span class="n">N</span>
+                    <span class="e">E</span>
+                    <span class="s">S</span>
+                    <span class="w">W</span>
+                </div>
+                
+            </div>
+            
+            <p class="no-api">
+                Your device does not support orientation API.<br>
+                Try using a mobile device.
+            </p>
+        
+        </main>
+
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/gyronorm.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

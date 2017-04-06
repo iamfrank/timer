@@ -1,0 +1,16 @@
+CACHE MANIFEST
+
+#v1.5
+
+apple-touch-icon.png
+browserconfig.xml
+favicon.ico
+index.html
+manifest.json
+tile.png
+tile-wide.png
+css/main.css
+css/normalize.min.css
+js/main.js
+js/vendor/gyronorm.min.js
+js/vendor/jquery-1.11.2.min.js

@@ -1,0 +1,6 @@
+{
+  "short_name": "Compass Demo",
+  "name": "The Offline Compass Demo",
+  "display": "standalone",
+  "orientation": "portrait"
+}
