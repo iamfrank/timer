@@ -2,7 +2,7 @@
 
 [Here is a demo of a mobile compass app](https://iamfrank.github.io/compass-webapp/dist) that uses web technologies.
 
-## Uses Javascrip API
+## Uses Javascript API
 
 The app is essentially a web page that uses the javascript deviceOrientation API (via [gyronorm.js](https://github.com/dorukeker/gyronorm.js#gyronormjs)) to access your device's internal accelerometer/compass to make a compass image point north on your screen.
 
