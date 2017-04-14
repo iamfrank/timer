@@ -3,5 +3,12 @@
   "name": "The Offline Compass Demo",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "index.html"
+  "start_url": "index.html",
+  "icons": [
+    {
+      "src": "tile.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ]
 }
