@@ -6,9 +6,10 @@
   "start_url": "index.html",
   "icons": [
     {
-      "src": "tile.png",
+      "src": "apple-touch-icon.png",
       "type": "image/png",
       "sizes": "144x144"
     }
-  ]
+  ],
+  "background_color": "#000000"
 }
