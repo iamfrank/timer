@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Compass Demo</title>
+        <title>Timer</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -21,35 +21,20 @@
     </head>
     <body>
         
-        <main>
+        <main id="timer">
 
-            <h1>Offline compass demo</h1>
-            
-            <div id="compass">
-                
-                <div id="rose">
-                    <span id="needle">
-                        <svg height="100%" width="100%" viewBox="0 0 100 100">
-                            <polygon points="50,0 100,100 0,100" style="fill:red;" />
-                        </svg>    
-                    </span>
-                    <span class="n">N</span>
-                    <span class="e">E</span>
-                    <span class="s">S</span>
-                    <span class="w">W</span>
-                </div>
-                
+            <h1>Timer</h1>
+            <p id="timer-time">0:0:0:0</p>
+            <p class="time-legend">hours : minutes : seconds : milliseconds<p>
+            <div>
+                <button id="timer-start" onclick="timeIt();"><span id="timer-start--label">Start</span></button>
+                <button id="timer-clear" onclick="clearTime();"><span id="timer-clear--label">Clear</span></button>
             </div>
-            
-            <p class="no-api">
-                Your device does not support orientation API.<br>
-                Try using a mobile device.
-            </p>
+            <p class="time-spent">That's <span id="timer-spent">0</span> hours</p>
         
         </main>
 
-        <script src="js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="js/vendor/gyronorm.min.js"></script>
+        <!-- <script src="js/vendor/jquery-1.11.2.min.js"></script> -->
         <script src="js/main.js"></script>
     </body>
 </html>

@@ -1,43 +1,56 @@
+var timer,
+    tenthSecsPassed = 0,
+    secsPassed = 0,
+    minsPassed = 0,
+    hoursPassed = 0,
+    timerActivated = false,
+    timerEl = document.getElementById("timer-time");
+    timeSpentEl = document.getElementById("timer-spent");
 
-var gn = new GyroNorm();
+function displayTimePassed() {
+    tenthSecsPassed += 1;
+    if (tenthSecsPassed > 9) {
+        tenthSecsPassed = 0;
+        secsPassed += 1;
+    }
+    if (secsPassed > 59) {
+        secsPassed = 0;
+        minsPassed += 1;
+    }
+    if (minsPassed > 59) {
+        minsPassed = 0;
+        hoursPassed += 1;
+    }
+    timerEl.innerHTML = hoursPassed + ':' + minsPassed + ':' + secsPassed + ':' + tenthSecsPassed + '0';
+}
 
-gn.init({
-    
-    frequency: 50,
-    orientationBase: GyroNorm.WORLD
-        
-}).then(function() {
-  gn.start(function(data){
-    // Process:
-    // data.do.alpha	( deviceorientation event alpha value )
-    // data.do.beta		( deviceorientation event beta value )
-    // data.do.gamma	( deviceorientation event gamma value )
-    // data.do.absolute	( deviceorientation event absolute value )
+function timeIt() {
+    if (!timerActivated) {
+        timerActivated = true;
+        timer = setInterval(displayTimePassed, 100);
+        document.getElementById("timer-start--label").innerHTML = 'Stop';
+    } else {
+        clearInterval(timer);
+        timerActivated = false;
+        document.getElementById("timer-start--label").innerHTML = 'Start';
+        calculateHours();
+    }
+}
 
-    // data.dm.x		( devicemotion event acceleration x value )
-    // data.dm.y		( devicemotion event acceleration y value )
-    // data.dm.z		( devicemotion event acceleration z value )
+function clearTime() {
+    tenthSecsPassed = 0;
+    secsPassed = 0;
+    minsPassed = 0;
+    hoursPassed = 0;
+    timerEl.innerHTML = '0:0:0:0';
+    timeSpentEl.innerHTML = 0;
+}
 
-    // data.dm.gx		( devicemotion event accelerationIncludingGravity x value )
-    // data.dm.gy		( devicemotion event accelerationIncludingGravity y value )
-    // data.dm.gz		( devicemotion event accelerationIncludingGravity z value )
-
-    // data.dm.alpha	( devicemotion event rotationRate alpha value )
-    // data.dm.beta		( devicemotion event rotationRate beta value )
-    // data.dm.gamma	( devicemotion event rotationRate gamma value )
-    
-    var n = data.do.alpha;
-    showAlpha(n);
-    
-  });
-}).catch(function(e){
-    
-    $('.no-api').show();
-    
-});
-
-function showAlpha(a) {
-    $('#rose').attr('style', 'transform: rotate(' + a + 'deg)');
+function calculateHours() {
+    var timeSpent = hoursPassed + (minsPassed / 60) + (secsPassed / 3600);
+    console.log('timeSpent');
+    console.log(timeSpent);
+    timeSpentEl.innerHTML = Number((timeSpent).toFixed(3));
 }
 
 
