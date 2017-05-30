@@ -3,9 +3,11 @@ var timer,
     secsPassed = 0,
     minsPassed = 0,
     hoursPassed = 0,
-    timerActivated = false,
     timerEl = document.getElementById("timer-time");
     timeSpentEl = document.getElementById("timer-spent");
+    startTimeBtn = document.getElementById("timer-start");
+    stopTimeBtn = document.getElementById("timer-stop");
+    clearTimeBtn = document.getElementById("timer-clear");
 
 function displayTimePassed() {
     tenthSecsPassed += 1;
@@ -24,18 +26,21 @@ function displayTimePassed() {
     timerEl.innerHTML = hoursPassed + ':' + minsPassed + ':' + secsPassed + ':' + tenthSecsPassed + '0';
 }
 
-function timeIt() {
-    if (!timerActivated) {
-        timerActivated = true;
-        timer = setInterval(displayTimePassed, 100);
-        document.getElementById("timer-start--label").innerHTML = 'Stop';
-    } else {
-        clearInterval(timer);
-        timerActivated = false;
-        document.getElementById("timer-start--label").innerHTML = 'Start';
-        calculateHours();
-    }
+function startTiming() {
+    clearTimeBtn.disabled = true;
+    timer = setInterval(displayTimePassed, 100);
+    startTimeBtn.hidden = true;
+    stopTimeBtn.hidden = false;
 }
+
+function stopTiming() {
+    clearInterval(timer);
+    startTimeBtn.hidden = false;
+    stopTimeBtn.hidden = true;
+    clearTimeBtn.disabled = false;
+    calculateHours();
+}
+
 
 function clearTime() {
     tenthSecsPassed = 0;
@@ -48,8 +53,6 @@ function clearTime() {
 
 function calculateHours() {
     var timeSpent = hoursPassed + (minsPassed / 60) + (secsPassed / 3600);
-    console.log('timeSpent');
-    console.log(timeSpent);
     timeSpentEl.innerHTML = Number((timeSpent).toFixed(3));
 }
 
