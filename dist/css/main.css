@@ -69,7 +69,7 @@ button[disabled] {
     margin: 0;
 }
 
-#time-spent {
-    opacity: 0.5;
+#timer-spent {
+    opacity: 0.33;
     margin: 2rem 0;
 }

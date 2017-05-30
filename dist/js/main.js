@@ -49,13 +49,11 @@ function clearTime() {
     minsPassed = 0;
     hoursPassed = 0;
     timerEl.innerHTML = '0:0:0:0';
-    timeSpentEl.hidden = true;
     timeSpentAmountEl.innerHTML = 0;
 }
 
 function calculateHours() {
     var timeSpent = hoursPassed + (minsPassed / 60) + (secsPassed / 3600);
-    timeSpentEl.hidden = false;
     timeSpentAmountEl.innerHTML = Number((timeSpent).toFixed(3));
 }
 
