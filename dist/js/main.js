@@ -5,6 +5,7 @@ var timer,
     hoursPassed = 0,
     timerEl = document.getElementById("timer-time");
     timeSpentEl = document.getElementById("timer-spent");
+    timeSpentAmountEl = document.getElementById("timer-spent--amount");
     startTimeBtn = document.getElementById("timer-start");
     stopTimeBtn = document.getElementById("timer-stop");
     clearTimeBtn = document.getElementById("timer-clear");
@@ -48,12 +49,14 @@ function clearTime() {
     minsPassed = 0;
     hoursPassed = 0;
     timerEl.innerHTML = '0:0:0:0';
-    timeSpentEl.innerHTML = 0;
+    timeSpentEl.hidden = true;
+    timeSpentAmountEl.innerHTML = 0;
 }
 
 function calculateHours() {
     var timeSpent = hoursPassed + (minsPassed / 60) + (secsPassed / 3600);
-    timeSpentEl.innerHTML = Number((timeSpent).toFixed(3));
+    timeSpentEl.hidden = false;
+    timeSpentAmountEl.innerHTML = Number((timeSpent).toFixed(3));
 }
 
 

@@ -26,13 +26,13 @@
 
             <h1>Timer</h1>
             <p id="timer-time">0:0:0:0</p>
-            <p class="time-legend">hours : minutes : seconds : milliseconds<p>
+            <p class="time-legend">hours : minutes : seconds : centiseconds<p>
             <div>
                 <button id="timer-start" onclick="startTiming();"><span id="timer-start--label">Start</span></button>
                 <button id="timer-stop" hidden onclick="stopTiming();"><span id="timer-stop--label">Stop</span></button>
                 <button id="timer-clear" onclick="clearTime();" disabled><span id="timer-clear--label">Clear</span></button>
             </div>
-            <p class="time-spent">That's <span id="timer-spent">0</span> hours</p>
+            <p id="timer-spent" hidden><span id="timer-spent--amount">0</span> hours passed</p>
         
         </main>
 
