@@ -1,39 +1,40 @@
 <!doctype html>
-<html class="no-js" lang="en" manifest="cache.manifest">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Timer</title>
+        <title>Stopwatch</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <!-- Enable iOS standalone mode for home screen -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="Compass Demo">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        
-        <link rel="manifest" href="manifest.json">
         <link rel="icon" href="apple-touch-icon.png" type="image/png">
 
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         
         <main id="timer">
-
-            <h1>Timer</h1>
-            <p id="timer-time">0:0:0:0</p>
-            <p class="time-legend">hours : minutes : seconds : centiseconds<p>
+            <h1>Stopwatch</h1>
+            <p class="timer-time">
+                <span class="timer-time--hours" title="hours">0</span>
+                <span class="timer-time--minutes" title="minutes">0</span>
+                <span class="timer-time--seconds" title="seconds">0</span>
+            </p>
             <div>
-                <button id="timer-start" onclick="startTiming();"><span id="timer-start--label">Start</span></button>
-                <button id="timer-stop" hidden onclick="stopTiming();"><span id="timer-stop--label">Stop</span></button>
-                <button id="timer-clear" onclick="clearTime();" disabled><span id="timer-clear--label">Clear</span></button>
+                <button class="timer--btn-start">
+                    Start
+                </button>
+                <button class="timer--btn-stop" style="display: none;">
+                    Stop
+                </button>
+                <button class="timer--btn-resume" style="display: none;">
+                    Resume
+                </button>
+                <button class="timer--btn-clear" style="display: none;">
+                    Clear
+                </button>
             </div>
-            <p id="timer-spent"><span id="timer-spent--amount">0</span> hours passed</p>
-        
         </main>
 
         <script src="js/main.js"></script>

@@ -1,76 +1,102 @@
-var timer,
-    tenthSecsPassed = 0,
-    secsPassed = 0,
-    minsPassed = 0,
-    hoursPassed = 0,
-    timerEl = document.getElementById("timer-time");
-    timeSpentEl = document.getElementById("timer-spent");
-    timeSpentAmountEl = document.getElementById("timer-spent--amount");
-    startTimeBtn = document.getElementById("timer-start");
-    stopTimeBtn = document.getElementById("timer-stop");
-    clearTimeBtn = document.getElementById("timer-clear");
+(function timer() {
 
-function displayTimePassed() {
-    tenthSecsPassed += 1;
-    if (tenthSecsPassed > 9) {
-        tenthSecsPassed = 0;
-        secsPassed += 1;
+    // Properties
+
+    let state = {}
+    let stored_state = localStorage.getItem('timerstate')
+
+    const ui_start_btn = document.querySelector('.timer--btn-start'),
+          ui_stop_btn = document.querySelector('.timer--btn-stop'),
+          ui_resume_btn = document.querySelector('.timer--btn-resume'),
+          ui_clear_btn = document.querySelector('.timer--btn-clear'),
+          ui_sec_el = document.querySelector('.timer-time--seconds'),
+          ui_min_el = document.querySelector('.timer-time--minutes'),
+          ui_hrs_el = document.querySelector('.timer-time--hours')
+
+    // Methods
+
+    function startTimer(state) {
+        ui_start_btn.style.display = 'none'
+        ui_stop_btn.style.display = 'block'
+        state.started = Date.now()
+        state.engaged = true
+        localStorage.setItem('timerstate', JSON.stringify(state))
+        ticktock()
     }
-    if (secsPassed > 59) {
-        secsPassed = 0;
-        minsPassed += 1;
+
+    function resumeTimer(state) {
+        ui_start_btn.style.display = 'none'
+        ui_resume_btn.style.display = 'none'
+        ui_clear_btn.style.display = 'none'
+        ui_stop_btn.style.display = 'block'
+        state.resumable = state.elapsed
+        state.started = Date.now()
+        state.engaged = true
+        ticktock()
     }
-    if (minsPassed > 59) {
-        minsPassed = 0;
-        hoursPassed += 1;
+
+    function stopTimer(state) {
+        ui_stop_btn.style.display = 'none'
+        ui_resume_btn.style.display = 'block'
+        ui_clear_btn.style.display = 'block'
+        state.engaged = false
     }
-    timerEl.innerHTML = hoursPassed + ':' + minsPassed + ':' + secsPassed + ':' + tenthSecsPassed + '0';
-}
 
-function startTiming() {
-    clearTimeBtn.disabled = true;
-    timer = setInterval(displayTimePassed, 100);
-    startTimeBtn.hidden = true;
-    stopTimeBtn.hidden = false;
-}
+    function clearTimer(state) {
+        ui_resume_btn.style.display = 'none'
+        ui_clear_btn.style.display = 'none'
+        ui_start_btn.style.display = 'block'
+        state.started = null
+        state.elapsed = 0
+        state.resumable = 0
+        localStorage.setItem('timerstate', null)
+        updateTime(state.elapsed)
+    }
 
-function stopTiming() {
-    clearInterval(timer);
-    startTimeBtn.hidden = false;
-    stopTimeBtn.hidden = true;
-    clearTimeBtn.disabled = false;
-    calculateHours();
-}
+    function updateTime(elapsed) {
+        const time = Math.floor( elapsed / 1000 ),
+              secs = time % 60,
+              mins = Math.floor( time / 60) % 60,
+              hrs = Math.floor( time / 3600 )
+        ui_sec_el.innerHTML = dispNum(secs)
+        ui_min_el.innerHTML = dispNum(mins)
+        ui_hrs_el.innerHTML = dispNum(hrs)
+    }
 
+    function ticktock() {
+        if (state.engaged) {
+            state.elapsed = ( Date.now() - state.started ) + state.resumable
+            localStorage.setItem('timerstate', JSON.stringify(state))
+            updateTime(state.elapsed)
+            requestAnimationFrame(ticktock)
+        }
+    }
 
-function clearTime() {
-    tenthSecsPassed = 0;
-    secsPassed = 0;
-    minsPassed = 0;
-    hoursPassed = 0;
-    timerEl.innerHTML = '0:0:0:0';
-    timeSpentAmountEl.innerHTML = 0;
-}
+    function dispNum(num) {
+        var s = num + ""
+        while (s.length < 2) s = "0" + s
+        return s
+    }
 
-function calculateHours() {
-    var timeSpent = hoursPassed + (minsPassed / 60) + (secsPassed / 3600);
-    timeSpentAmountEl.innerHTML = Number((timeSpent).toFixed(3));
-}
+    // Initialise
 
+    console.log(stored_state)
 
-/*
- * Register service worker
- * (Does nothing at present. Is needed to display Chrome install web app banner.)
- */
+    ui_start_btn.addEventListener('click', function() { startTimer(state) })
+    ui_stop_btn.addEventListener('click', function() { stopTimer(state) })
+    ui_resume_btn.addEventListener('click', function() { resumeTimer(state) })
+    ui_clear_btn.addEventListener('click', function() { clearTimer(state) })
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('../dist/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }).catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  });
-}
+    if (stored_state) {
+        state = JSON.parse(stored_state)
+        resumeTimer(state)
+    } else {
+        state = {
+            engaged: false,
+            started: null,
+            elapsed: 0,
+            resumable: 0
+        }
+    }
+
+})()
