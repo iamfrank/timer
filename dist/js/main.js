@@ -5,13 +5,15 @@
     let state = {}
     let stored_state = JSON.parse(localStorage.getItem('timerstate'))
 
-    const ui_start_btn = document.querySelector('.timer--btn-start'),
+    const ui_timer = document.querySelector('#timer'),
+          ui_start_btn = document.querySelector('.timer--btn-start'),
           ui_stop_btn = document.querySelector('.timer--btn-stop'),
           ui_resume_btn = document.querySelector('.timer--btn-resume'),
           ui_clear_btn = document.querySelector('.timer--btn-clear'),
           ui_sec_el = document.querySelector('.timer-time--seconds'),
           ui_min_el = document.querySelector('.timer-time--minutes'),
-          ui_hrs_el = document.querySelector('.timer-time--hours')
+          ui_hrs_el = document.querySelector('.timer-time--hours'),
+          ui_marker = document.querySelector('.timer--marker-live')
 
     // Methods
 
@@ -63,6 +65,7 @@
         ui_sec_el.innerHTML = dispNum(secs)
         ui_min_el.innerHTML = dispNum(mins)
         ui_hrs_el.innerHTML = dispNum(hrs)
+        ui_marker.style.transform = `rotate(${ secs * 6 }deg)`
     }
 
     function ticktock() {
@@ -86,6 +89,13 @@
     ui_stop_btn.addEventListener('click', function() { stopTimer(state) })
     ui_resume_btn.addEventListener('click', function() { resumeTimer(state) })
     ui_clear_btn.addEventListener('click', function() { clearTimer(state) })
+
+    for (let i = 0; i < 60; i++) {
+        let notch = document.createElement('span')
+        notch.setAttribute('class', 'timer--marker')
+        notch.style.transform = `rotate(${ i * 6 }deg)`
+        ui_timer.appendChild(notch)
+    }
 
     console.log(stored_state)
 

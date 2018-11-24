@@ -17,13 +17,14 @@ body {
 }
 
 h1 {
-    font-size: 1.5rem;
-    margin: 1rem;
-    padding: 0;
+    font-size: 1rem;
+    margin: .25rem;
+    padding: 0.25rem 0;
     text-transform: uppercase;
     font-weight: normal;
     opacity: 0.5;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    line-height: 1; 
     border-top: solid 1px rgba(255,255,255,.2);
     border-bottom: solid 1px rgba(255,255,255,.2);
     font-family: serif;
@@ -51,19 +52,41 @@ button[disabled] {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    justify-content: center;
+    height: 90vmin;
+    width: 90vmin;
+    border-radius: 50%;
+    position: relative;
 }
 
 .timer-time {
     font-family: monospace;
-    font-size: 10vw;
+    font-size: 12vmin;
     font-weight: bold;
     display: flex;
     flex-flow: row nowrap;
-    margin: 1rem 0;
+    margin: .75rem 0;
     padding: 0;
 }
 
 .timer-time--minutes::before,
 .timer-time--minutes::after {
     content: ':';
+}
+
+.timer--marker,
+.timer--marker-live {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -1vmin;
+    display: block;
+    height: 8vmin;
+    width: 2vmin;
+    background-color: hsla(0,0%,100%,.33);
+    transform-origin: 50% 45vmin;
+}
+
+.timer--marker-live {
+    background-color: #fff;
 }
