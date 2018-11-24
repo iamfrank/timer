@@ -3,7 +3,7 @@
     // Properties
 
     let state = {}
-    let stored_state = localStorage.getItem('timerstate')
+    let stored_state = JSON.parse(localStorage.getItem('timerstate'))
 
     const ui_start_btn = document.querySelector('.timer--btn-start'),
           ui_stop_btn = document.querySelector('.timer--btn-stop'),
@@ -36,10 +36,12 @@
     }
 
     function stopTimer(state) {
+        ui_start_btn.style.display = 'none'
         ui_stop_btn.style.display = 'none'
         ui_resume_btn.style.display = 'block'
         ui_clear_btn.style.display = 'block'
         state.engaged = false
+        localStorage.setItem('timerstate', JSON.stringify(state))
     }
 
     function clearTimer(state) {
@@ -49,7 +51,7 @@
         state.started = null
         state.elapsed = 0
         state.resumable = 0
-        localStorage.setItem('timerstate', null)
+        localStorage.setItem('timerstate', 'null')
         updateTime(state.elapsed)
     }
 
@@ -80,22 +82,27 @@
 
     // Initialise
 
-    console.log(stored_state)
-
     ui_start_btn.addEventListener('click', function() { startTimer(state) })
     ui_stop_btn.addEventListener('click', function() { stopTimer(state) })
     ui_resume_btn.addEventListener('click', function() { resumeTimer(state) })
     ui_clear_btn.addEventListener('click', function() { clearTimer(state) })
 
-    if (stored_state) {
-        state = JSON.parse(stored_state)
-        resumeTimer(state)
-    } else {
+    console.log(stored_state)
+
+    if (!stored_state) {
         state = {
             engaged: false,
             started: null,
             elapsed: 0,
             resumable: 0
+        }
+    } else {
+        state = stored_state
+        if (state.engaged === true) {
+            resumeTimer(state)
+        } else {
+            updateTime(state.elapsed)
+            stopTimer(state)
         }
     }
 

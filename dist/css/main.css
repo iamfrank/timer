@@ -2,21 +2,8 @@
     box-sizing: border-box;
 }
 
-h1 {
-    font-size: 1.5rem;
-    margin: 1rem;
-    padding: 0;
-    text-transform: uppercase;
-    font-weight: normal;
-    opacity: 0.33;
-    letter-spacing: 2px;
-    border-top: solid 1px rgba(255,255,255,.2);
-    border-bottom: solid 1px rgba(255,255,255,.2);
-    font-family: Georgia, serif;
-}
-
 body {
-    font: 1rem/1.3 Roboto, sans-serif;
+    font: 1rem/1.3 sans-serif;
     background: #933;
     color: #fff;
     width: 100vw;
@@ -27,6 +14,19 @@ body {
     align-items: center;
     padding: 0;
     margin: 0;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 1rem;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    border-top: solid 1px rgba(255,255,255,.2);
+    border-bottom: solid 1px rgba(255,255,255,.2);
+    font-family: serif;
 }
 
 button {
@@ -51,4 +51,19 @@ button[disabled] {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+}
+
+.timer-time {
+    font-family: monospace;
+    font-size: 10vw;
+    font-weight: bold;
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.timer-time--minutes::before,
+.timer-time--minutes::after {
+    content: ':';
 }
