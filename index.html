@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Stopwatch timer app by Iamfrank">
 
-        <base href="/stopwatch">
+        <base href="../">
 
         <link rel="icon" href="images/logo_48x48.png">
 
@@ -47,7 +47,7 @@
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                     navigator.serviceWorker.register('service-worker.js', {
-                        scope: '/'
+                        scope: '../'
                     });
                 });
             }
