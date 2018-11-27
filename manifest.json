@@ -2,7 +2,7 @@
     "name": "Stopwatch",
     "short_name": "Stopwatch",
     "description": "Stopwatch timer app by Iamfrank",
-    "start_url": "../",
+    "start_url": "/stopwatch",
     "display": "standalone",
     "theme_color": "#1f5c7a",
     "background_color": "#1f5c7a",
