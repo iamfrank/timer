@@ -97,8 +97,6 @@
         ui_timer.appendChild(notch)
     }
 
-    console.log(stored_state)
-
     if (!stored_state) {
         state = {
             engaged: false,
