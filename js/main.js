@@ -1,9 +1,9 @@
-(function timer() {
+(function() {
+
 
     // Properties
 
-    let state = {}
-    let stored_state = JSON.parse(localStorage.getItem('timerstate'))
+    let global_state = getState()
 
     const ui_timer = document.querySelector('#timer'),
           ui_start_btn = document.querySelector('.timer--btn-start'),
@@ -13,48 +13,65 @@
           ui_sec_el = document.querySelector('.timer-time--seconds'),
           ui_min_el = document.querySelector('.timer-time--minutes'),
           ui_hrs_el = document.querySelector('.timer-time--hours'),
-          ui_marker = document.querySelector('.timer--marker-live')
+          ui_marker = document.querySelector('.timer--marker-live'),
+          ui_time_spent_el = document.querySelector('.timer-time-spent'),
+          update_event = new CustomEvent("timerupdate", {
+            detail: {
+                state: global_state
+            }
+          })
+
 
     // Methods
 
-    function startTimer(state) {
+    function startTimer() {
+        setState({
+            engaged: true,
+            started: Date.now(),
+            local_elapsed: 0,
+            elapsed: 0
+        })
+        ticktock()
         ui_start_btn.style.display = 'none'
         ui_stop_btn.style.display = 'block'
-        state.started = Date.now()
-        state.engaged = true
-        localStorage.setItem('timerstate', JSON.stringify(state))
-        ticktock()
     }
 
-    function resumeTimer(state) {
+    function resumeTimer() {
+        var state = getState()
+        state.engaged = true
+        state.started = Date.now()
+        setState(state)
+        updateTime(state.elapsed)
+        ticktock()
         ui_start_btn.style.display = 'none'
         ui_resume_btn.style.display = 'none'
         ui_clear_btn.style.display = 'none'
         ui_stop_btn.style.display = 'block'
-        state.resumable = state.elapsed
-        state.started = Date.now()
-        state.engaged = true
-        ticktock()
     }
 
-    function stopTimer(state) {
+    function stopTimer() {
+        var state = getState()
+        state.engaged = false
+        state.elapsed = state.elapsed + ( Date.now() - state.started )
+        setState(state)
         ui_start_btn.style.display = 'none'
         ui_stop_btn.style.display = 'none'
         ui_resume_btn.style.display = 'block'
         ui_clear_btn.style.display = 'block'
-        state.engaged = false
-        localStorage.setItem('timerstate', JSON.stringify(state))
     }
 
-    function clearTimer(state) {
+    function clearTimer() {
+        var state = {
+            engaged: false,
+            started: null,
+            elapsed: 0,
+            local_elapsed: 0
+        }
+        setState(state)
+        updateTime(0)
         ui_resume_btn.style.display = 'none'
         ui_clear_btn.style.display = 'none'
         ui_start_btn.style.display = 'block'
-        state.started = null
-        state.elapsed = 0
-        state.resumable = 0
-        localStorage.setItem('timerstate', 'null')
-        updateTime(state.elapsed)
     }
 
     function updateTime(elapsed) {
@@ -66,14 +83,18 @@
         ui_min_el.innerHTML = dispNum(mins)
         ui_hrs_el.innerHTML = dispNum(hrs)
         ui_marker.style.transform = `rotate(${ secs * 6 }deg)`
+        ui_time_spent_el.innerHTML = `${ ( elapsed / 3600000 ).toFixed(2) } hours`
     }
 
     function ticktock() {
-        if (state.engaged) {
-            state.elapsed = ( Date.now() - state.started ) + state.resumable
-            localStorage.setItem('timerstate', JSON.stringify(state))
-            updateTime(state.elapsed)
-            requestAnimationFrame(ticktock)
+        if (global_state.engaged) {
+            global_state.local_elapsed = Date.now() - global_state.started
+            updateTime(( global_state.elapsed + global_state.local_elapsed ))
+            setTimeout(function() {
+                ticktock()
+            }, 200)
+        } else {
+            return false
         }
     }
 
@@ -83,12 +104,57 @@
         return s
     }
 
+    function setState(state) {
+        global_state = state
+        localStorage.setItem('timerstate', JSON.stringify(state))
+        document.dispatchEvent(update_event)
+    }
+
+    function getState() {
+        var state = JSON.parse(localStorage.getItem('timerstate'))
+        if (!state) {
+            state = {
+                engaged: false,
+                started: null,
+                elapsed: 0,
+                local_elapsed: 0
+            }
+        }        
+        return state
+    }
+
+    function init() {
+        global_state = getState()
+        if (global_state.engaged === true) {
+            ui_start_btn.style.display = 'none'
+            ui_resume_btn.style.display = 'none'
+            ui_clear_btn.style.display = 'none'
+            ui_stop_btn.style.display = 'block'
+            global_state.local_elapsed = Date.now() - global_state.started
+            setState(global_state)
+            updateTime(global_state.elapsed)
+            ticktock()
+        } else if (global_state.elapsed) {
+            ui_start_btn.style.display = 'none'
+            ui_stop_btn.style.display = 'none'
+            ui_resume_btn.style.display = 'block'
+            ui_clear_btn.style.display = 'block'
+            updateTime(global_state.elapsed)
+        } else {
+            ui_stop_btn.style.display = 'none'
+            ui_resume_btn.style.display = 'none'
+            ui_clear_btn.style.display = 'none'
+            ui_start_btn.style.display = 'block'
+        }
+    }
+
+
     // Initialise
 
-    ui_start_btn.addEventListener('click', function() { startTimer(state) })
-    ui_stop_btn.addEventListener('click', function() { stopTimer(state) })
-    ui_resume_btn.addEventListener('click', function() { resumeTimer(state) })
-    ui_clear_btn.addEventListener('click', function() { clearTimer(state) })
+    ui_start_btn.addEventListener('click', function() { startTimer() })
+    ui_stop_btn.addEventListener('click', function() { stopTimer() })
+    ui_resume_btn.addEventListener('click', function() { resumeTimer() })
+    ui_clear_btn.addEventListener('click', function() { clearTimer() })
 
     for (let i = 0; i < 60; i++) {
         let notch = document.createElement('span')
@@ -97,21 +163,6 @@
         ui_timer.appendChild(notch)
     }
 
-    if (!stored_state) {
-        state = {
-            engaged: false,
-            started: null,
-            elapsed: 0,
-            resumable: 0
-        }
-    } else {
-        state = stored_state
-        if (state.engaged === true) {
-            resumeTimer(state)
-        } else {
-            updateTime(state.elapsed)
-            stopTimer(state)
-        }
-    }
+    init()
 
 })()
