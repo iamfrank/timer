@@ -20,7 +20,7 @@ const bgSyncPlugin = new workbox.backgroundSync.BackgroundSyncPlugin(QUEUE_NAME,
 })
 
 workbox.routing.registerRoute(
-  new RegExp('/stopwatch/*'),
+  new RegExp('/*'),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE,
     plugins: [
