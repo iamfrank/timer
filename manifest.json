@@ -4,7 +4,6 @@
   "lang": "en-us",
   "description": "Time tracking app by iamfrank",
   "start_url": "/",
-  "scope": ".",
   "id": "/stopwatch",
   "display": "standalone",
   "orientation": "any",
