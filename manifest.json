@@ -3,7 +3,7 @@
   "short_name": "Stopwatch",
   "lang": "en-us",
   "description": "Time tracking app by iamfrank",
-  "start_url": "/",
+  "start_url": "./index.html",
   "id": "/stopwatch",
   "display": "standalone",
   "orientation": "any",
