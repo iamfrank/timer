@@ -14,7 +14,6 @@
           ui_min_el = document.querySelector('.timer-time--minutes'),
           ui_hrs_el = document.querySelector('.timer-time--hours'),
           ui_marker = document.querySelector('.timer--marker-live'),
-          ui_time_spent_el = document.querySelector('.timer-time-spent'),
           update_event = new CustomEvent("timerupdate", {
             detail: {
                 state: global_state
@@ -83,7 +82,6 @@
         ui_min_el.innerHTML = dispNum(mins)
         ui_hrs_el.innerHTML = dispNum(hrs)
         ui_marker.style.transform = `rotate(${ secs * 6 }deg)`
-        ui_time_spent_el.innerHTML = `${ ( elapsed / 3600000 ).toFixed(2) } hours`
     }
 
     function ticktock() {
