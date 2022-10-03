@@ -41,6 +41,13 @@
         <meta property="og:image" content="images/logo_144x144.png">
 
         <link rel="stylesheet" href="css/main.css">
+
+        <script>
+            // Load and register Service Worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('js/sw.js')
+            }
+        </script>
     </head>
     <body>
         
@@ -64,21 +71,6 @@
             <span class="timer--marker-live"></span>
         
         </article>
-
-        <script type="module">
-            // Load and register Service Worker
-            // This is the "Background Sync" service worker
-
-            /*
-            This code uses the pwa-update web component https://github.com/pwa-builder/pwa-update to register your service worker,
-            tell the user when there is an update available and let the user know when your PWA is ready to use offline.
-            */
-
-            import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate'
-
-            const el = document.createElement('pwa-update')
-            document.body.appendChild(el)
-        </script>
 
         <script src="js/main.js"></script>
         
