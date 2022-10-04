@@ -14,10 +14,10 @@ const contentToCache = [
 
 // Install serviceworker
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Install')
+  // console.log('[Service Worker] Install')
   event.waitUntil((async () => {
     const cache = await caches.open(cacheName)
-    console.log('[Service Worker] Caching')
+    // console.log('[Service Worker] Caching')
     await cache.addAll(contentToCache)
   })())
 })
@@ -26,12 +26,12 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith((async () => {
     const r = await caches.match(event.request)
-    console.log(`[Service Worker] Fetching resource: ${event.request.url}`)
+    // console.log(`[Service Worker] Fetching resource: ${event.request.url}`)
     if (r) { return r }
     const response = await fetch(event.request)
     const cache = await caches.open(cacheName)
-    console.log(`[Service Worker] Caching new resource: ${event.request.url}`)
-    cache.put(e.request, response.clone())
+    // console.log(`[Service Worker] Caching new resource: ${event.request.url}`)
+    cache.put(event.request, response.clone())
     return response
   })())
 })
