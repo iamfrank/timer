@@ -29,6 +29,7 @@ self.addEventListener('fetch', (event) => {
     // console.log(`[Service Worker] Fetching resource: ${event.request.url}`)
     if (r) { return r }
     const response = await fetch(event.request)
+    console.log('what gives', response, event)
     const cache = await caches.open(cacheName)
     // console.log(`[Service Worker] Caching new resource: ${event.request.url}`)
     cache.put(event.request, response.clone())
