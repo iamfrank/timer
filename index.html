@@ -45,9 +45,7 @@
 
   <script>
     // Load and register Service Worker
-    console.log('checking for service worker')
     if ('serviceWorker' in navigator) {
-      console.log('we have SW')
       navigator.serviceWorker.register('./js/sw.js')
     }
   </script>

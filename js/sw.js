@@ -1,6 +1,5 @@
 const cacheName = 'stopwatch-v1'
 const contentToCache = [
-  '/',
   '/index.html',
   '/js/main.js',
   '/css/main.css',
