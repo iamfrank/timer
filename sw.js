@@ -22,6 +22,16 @@ self.addEventListener('install', (event) => {
   })())
 })
 
+// Cleans old cache files
+self.addEventListener('activate', (event) => {
+  event.waitUntil(caches.keys().then((keyList) => {
+    return Promise.all(keyList.map((key) => {
+      if (key === cacheName) { return }
+      return caches.delete(key)
+    }))
+  }))
+})
+
 // Fetch content
 self.addEventListener('fetch', (event) => {
   event.respondWith((async () => {
