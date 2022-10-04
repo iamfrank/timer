@@ -1,78 +1,81 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Timer</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <meta name="description" content="Stopwatch timer app by Iamfrank">
 
-        <link rel="icon" href="images/logo_48x48.png">
+<head>
+  <meta charset="utf-8">
+  <title>Timer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Stopwatch timer app by Iamfrank">
 
-        <!-- See https://goo.gl/OOhYW5 -->
-        <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="images/logo_48x48.png">
 
-        <meta name="theme-color" content="#1f5c7a">
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
 
-        <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="application-name" content="Stopwatch">
+  <meta name="theme-color" content="#1f5c7a">
 
-        <!-- Add to homescreen for Safari on iOS -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="Stopwatch">
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Stopwatch">
 
-        <!-- Homescreen icons -->
-        <link rel="apple-touch-icon" href="images/logo_48x48.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/logo_72x72.png">
-        <link rel="apple-touch-icon" sizes="96x96" href="images/logo_96x96.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="images/logo_144x144.png">
-        <link rel="apple-touch-icon" sizes="192x192" href="images/logo_192x192.png">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Stopwatch">
 
-        <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-        <meta name="msapplication-TileImage" content="images/logo_144x144.png">
-        <meta name="msapplication-TileColor" content="#1f5c7a">
-        <meta name="msapplication-tap-highlight" content="no">
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" href="images/logo_48x48.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/logo_72x72.png">
+  <link rel="apple-touch-icon" sizes="96x96" href="images/logo_96x96.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/logo_144x144.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="images/logo_192x192.png">
 
-        <!-- Default twitter cards -->
-        <meta name="twitter:card" content="Stopwatch timer app by iamfrank">
-        <meta property="og:type" content="website">
-        <meta property="og:site_name" content="Stopwatch">
-        <meta property="og:image" content="images/logo_144x144.png">
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="images/logo_144x144.png">
+  <meta name="msapplication-TileColor" content="#1f5c7a">
+  <meta name="msapplication-tap-highlight" content="no">
 
-        <link rel="stylesheet" href="css/main.css">
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="Stopwatch timer app by iamfrank">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Stopwatch">
+  <meta property="og:image" content="images/logo_144x144.png">
 
-        <script>
-            // Load and register Service Worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./js/sw.js')
-            }
-        </script>
-    </head>
-    <body>
-        
-        <article id="timer">
+  <link rel="stylesheet" href="css/main.css">
 
-            <h1>Stopwatch</h1>
+  <script>
+    // Load and register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./js/sw.js')
+    }
+  </script>
+</head>
 
-            <p class="timer-time">
-                <span class="timer-time--hours" title="hours">00</span>
-                <span class="timer-time--minutes" title="minutes">00</span>
-                <span class="timer-time--seconds" title="seconds">00</span>
-            </p>
-            
-            <button class="timer--btn-start">Start</button>
-            <button class="timer--btn-stop" style="display: none;">Stop</button>
-            <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
-                <button class="timer--btn-resume" style="display: none;">Resume</button>
-                <button class="timer--btn-clear" style="display: none;">Clear</button>
-            </div>
+<body>
 
-            <span class="timer--marker-live"></span>
-        
-        </article>
+  <article id="timer">
 
-        <script src="js/main.js"></script>
-        
-    </body>
+    <h1>Stopwatch</h1>
+
+    <p class="timer-time">
+      <span class="timer-time--hours" title="hours">00</span>
+      <span class="timer-time--minutes" title="minutes">00</span>
+      <span class="timer-time--seconds" title="seconds">00</span>
+    </p>
+
+    <button class="timer--btn-start">Start</button>
+    <button class="timer--btn-stop" style="display: none;">Stop</button>
+    <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
+      <button class="timer--btn-resume" style="display: none;">Resume</button>
+      <button class="timer--btn-clear" style="display: none;">Clear</button>
+    </div>
+
+    <span class="timer--marker-live"></span>
+
+  </article>
+
+  <script src="js/main.js"></script>
+
+</body>
+
 </html>
