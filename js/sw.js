@@ -1,15 +1,15 @@
 const cacheName = 'stopwatch-v1'
 const contentToCache = [
-  '/index.html',
-  '/js/main.js',
-  '/css/main.css',
-  '/css/normalize.min.css',
-  '/images/logo_48x48.png',
-  '/images/logo_72x72.png',
-  '/images/logo_96x96.png',
-  '/images/logo_144x144.png',
-  '/images/logo_192x192.png',
-  '/images/logo_512x512.png'
+  '/stopwatch/index.html',
+  '/stopwatch/js/main.js',
+  '/stopwatch/css/main.css',
+  '/stopwatch/css/normalize.min.css',
+  '/stopwatch/images/logo_48x48.png',
+  '/stopwatch/images/logo_72x72.png',
+  '/stopwatch/images/logo_96x96.png',
+  '/stopwatch/images/logo_144x144.png',
+  '/stopwatch/images/logo_192x192.png',
+  '/stopwatch/images/logo_512x512.png'
 ]
 
 // Install serviceworker
