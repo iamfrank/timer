@@ -1,5 +1,5 @@
 {
-  "name": "Stopwatch v1.0",
+  "name": "Stopwatch v1.1",
   "short_name": "Stopwatch",
   "lang": "en-us",
   "description": "Time tracking app by iamfrank",
@@ -7,8 +7,8 @@
   "id": "/stopwatch",
   "display": "standalone",
   "orientation": "any",
-  "theme_color": "#1f5c7a",
-  "background_color": "#1f5c7a",
+  "theme_color": "#ff00ff",
+  "background_color": "#130613",
   "icons": [
     {
       "src": "images/logo_192x192.png",
