@@ -1,4 +1,4 @@
-const cacheName = 'stopwatch-v1'
+const cacheName = 'stopwatch-v1.1'
 const contentToCache = [
   '/stopwatch/index.html',
   '/stopwatch/js/main.js',
