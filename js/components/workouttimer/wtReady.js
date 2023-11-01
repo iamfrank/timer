@@ -27,20 +27,21 @@ export class WTReady extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <h2>Ready</h2>
-      <dl>
-        <dt>Work</dt>
-        <dd>${ this.state.worktime } seconds</dd>
-        <dt>Break</dt>
-        <dd>${ this.state.breaktime } seconds</dd>
-        <dt>Repetitions</dt>
-        <dd>${ this.state.intervals }</dd>
-      </dl>
-      <p>
-        <button id="goBtn">Go</button>
-      </p>
-      <p>
+      <h1>Workout timer</h1>
+      <section class="timer-program">
+        <p>${ this.state.intervals } reps</p>
+        <dl>
+          <dt>Work</dt>
+          <dd>${ this.state.worktime } seconds</dd>
+          <dt>Break</dt>
+          <dd>${ this.state.breaktime } seconds</dd>
+        </dl>
+      </section>
+      <p class="timer-change-button">
         <button id="changeBtn" class="secondary">Change</button>
+      </p>
+      <p class="timer-go-button">
+        <button id="goBtn" class="primary">Go</button>
       </p>
     `
     this.querySelector('#goBtn').addEventListener('click', this.handleGo.bind(this))

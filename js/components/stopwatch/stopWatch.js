@@ -83,11 +83,11 @@ export class StopWatch extends HTMLElement {
             <span class="timer-time--seconds" title="seconds">00</span>
           </p>
 
-          <button class="timer--btn-start">Start</button>
-          <button class="timer--btn-stop" style="display: none;">Stop</button>
+          <button class="primary timer--btn-start">Start</button>
+          <button class="primary timer--btn-stop" style="display: none;">Stop</button>
           <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
-            <button class="timer--btn-resume" style="display: none;">Resume</button>
-            <button class="timer--btn-clear" style="display: none;">Clear</button>
+            <button class="primary timer--btn-resume" style="display: none;">Resume</button>
+            <button class="primary timer--btn-clear" style="display: none;">Clear</button>
           </div>
 
           <span class="timer--marker-live"></span>

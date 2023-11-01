@@ -22,7 +22,7 @@ export class WTSet extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <h2>Change workout</h2>
+      <h1>Change workout</h1>
       <form>
         <fieldset>
           <label for="worktime">Workout duration</label>
@@ -36,7 +36,9 @@ export class WTSet extends HTMLElement {
           <label for="intervals">Sets</label>
           <input id="intervals" type="number" value="${ this.state.intervals }">
         </fieldset>
-        <button id="saveBtn">Save</button>
+        <fieldset class="timer-save-button">
+          <button id="saveBtn" class="primary">Save</button>
+        </fieldset>
       </form>
     `
     this.querySelector('form').addEventListener('submit', this.handleSave.bind(this))

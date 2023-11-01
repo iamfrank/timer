@@ -18,9 +18,11 @@ export class WorkoutTimer extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <wt-ready></wt-ready>
-      <wt-set hidden></wt-set>
-      <wt-work hidden></wt-work>
+      <article class="workout-timer-wrapper">
+        <wt-ready></wt-ready>
+        <wt-set hidden></wt-set>
+        <wt-work hidden></wt-work>
+      </article>
     `
   }
   

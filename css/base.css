@@ -2,6 +2,7 @@
   --c1: hsl(300,50%,5%);
   --c2: hsl(300,100%,50%);
   --c3: hsl(300,100%,33%);
+  --c4: hsl(100,100%,50%);
 }
 
 * {
@@ -19,7 +20,7 @@ body {
   background-color: var(--c1);
   color: #fff;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   padding: 0;
@@ -35,27 +36,81 @@ h1 {
   line-height: 1; 
   background-color: var(--c2);
   color: var(--c1);
-  border-left: solid 0.5rem hsl(100,100%,50%);
+  border-left: solid 0.5rem var(--c4);
 }
 
 button {
-  background-color: var(--c2);
   border: none;
-  padding: 1rem 1.5rem;
   border-radius: .5rem;
   margin: 0;
   display: block;
-  color: #000;
-  font-size: 1.25em;
   font-weight: bold;
   transition: all .25s ease-out;
   cursor: pointer;
   font-family: monospace;
+}
+
+button.primary {
+  background-color: var(--c2);
+  padding: 1rem 1.5rem;
+  color: #000;
+  font-size: 1.25em;
   text-transform: uppercase;
   box-shadow: 0 0 3rem 1rem var(--c3);
 }
 
-button:hover,
-button:active {
+button.primary:hover,
+button.primary:active {
   box-shadow: 0 0 0 0.5rem var(--c3);
+}
+
+button.secondary {
+  background-color: transparent;
+  color: var(--c2);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  box-shadow: inset 0 0 0 0.125rem var(--c3);
+}
+
+button.secondary:hover,
+button.secondary:active {
+  box-shadow: inset 0 0 1rem 0.125rem var(--c4);
+}
+
+dl {
+  margin: 0;
+}
+
+dl dt {
+  font-size: smaller;
+  opacity: 0.75;
+  margin-top: 0.5rem;
+}
+
+dl dd {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+label {
+  display: block;
+  margin: 0 0 0.25rem;
+}
+
+input {
+  border: solid 0.125rem var(--c3);
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 1.5rem;
+  font-size: 1.25rem;
 }

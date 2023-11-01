@@ -21,7 +21,7 @@ export class WTWork extends HTMLElement {
         <span class="countdown"></span>
       </p>
     </section>
-    <button id="endBtn">End</button>
+    <button id="endBtn" class="primary">End</button>
   `
 
   constructor() {
