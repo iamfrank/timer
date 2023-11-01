@@ -53,26 +53,7 @@
 
 <body>
 
-  <article id="timer">
-
-    <h1>Stopwatch</h1>
-
-    <p class="timer-time">
-      <span class="timer-time--hours" title="hours">00</span>
-      <span class="timer-time--minutes" title="minutes">00</span>
-      <span class="timer-time--seconds" title="seconds">00</span>
-    </p>
-
-    <button class="timer--btn-start">Start</button>
-    <button class="timer--btn-stop" style="display: none;">Stop</button>
-    <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
-      <button class="timer--btn-resume" style="display: none;">Resume</button>
-      <button class="timer--btn-clear" style="display: none;">Clear</button>
-    </div>
-
-    <span class="timer--marker-live"></span>
-
-  </article>
+  <stopwatch-timer></stopwatch-timer>
 
   <script type="module" src="js/main.js"></script>
 

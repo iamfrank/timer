@@ -1,4 +1,4 @@
-import { getState } from "../modules/state.js"
+import { getState } from "../../modules/state.js"
 
 export class WTReady extends HTMLElement {
 

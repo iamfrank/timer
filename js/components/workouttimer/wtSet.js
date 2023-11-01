@@ -1,4 +1,4 @@
-import { getState, setState } from "../modules/state.js"
+import { getState, setState } from "../../modules/state.js"
 
 export class WTSet extends HTMLElement {
 

@@ -1,6 +1,6 @@
-import { beepEnd, beepStart } from "../modules/soundEffects.js"
-import { ScreenLock } from '../modules/screenlock.js'
-import { getState } from "../modules/state.js"
+import { beepEnd, beepStart } from "../../modules/soundEffects.js"
+import { ScreenLock } from '../../modules/screenlock.js'
+import { getState } from "../../modules/state.js"
 
 export class WTWork extends HTMLElement {
 
