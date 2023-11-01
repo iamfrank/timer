@@ -36,10 +36,10 @@ export class StopWatch extends HTMLElement {
       this.ui_hrs_el = document.querySelector('.timer-time--hours')
       this.ui_marker = document.querySelector('.timer--marker-live')
 
-      this.ui_start_btn.addEventListener('click', function() { this.startTimer() })
-      this.ui_stop_btn.addEventListener('click', function() { this.stopTimer() })
-      this.ui_resume_btn.addEventListener('click', function() { this.resumeTimer() })
-      this.ui_clear_btn.addEventListener('click', function() { this.clearTimer() })
+      this.ui_start_btn.addEventListener('click', this.startTimer.bind(this))
+      this.ui_stop_btn.addEventListener('click', this.stopTimer.bind(this))
+      this.ui_resume_btn.addEventListener('click', this.resumeTimer.bind(this))
+      this.ui_clear_btn.addEventListener('click', this.clearTimer.bind(this))
 
       for (let i = 0; i < 60; i++) {
         let notch = document.createElement('span')
@@ -161,7 +161,7 @@ export class StopWatch extends HTMLElement {
       if (this.global_state.engaged) {
         this.global_state.local_elapsed = Date.now() - this.global_state.started
         this.updateTime(( this.global_state.elapsed + this.global_state.local_elapsed ))
-          setTimeout(function() {
+          setTimeout(() => {
             this.ticktock()
           }, 200)
       } else {
