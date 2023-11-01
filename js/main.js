@@ -1,3 +1,7 @@
+import { WorkoutTimer } from './components/workoutTimer.js'
+
+customElements.define('workout-timer', WorkoutTimer)
+
 (function() {
 
 
@@ -23,6 +27,12 @@
 
     // Methods
 
+    /**
+     * Starts the timer by setting the engaged state to true, initializing
+     * the timer, and updating the UI. 
+     *
+     * @return {}
+     */
     function startTimer() {
         setState({
             engaged: true,

@@ -1,0 +1,57 @@
+#timer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 90vmin;
+  width: 90vmin;
+  border-radius: 50%;
+  position: relative;
+}
+
+.timer-time {
+  font-size: 12vmin;
+  font-weight: bold;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: .75rem 0 0;
+  padding: 0;
+  font-family: monospace;
+}
+
+.timer-time--minutes::before,
+.timer-time--minutes::after {
+  content: ':';
+}
+
+.timer--marker,
+.timer--marker-live {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -.9vmin;
+  display: block;
+  height: 6vmin;
+  width: 1.8vmin;
+  background-color: hsl(300,33%,15%);
+  transform-origin: 50% 45vmin;
+  z-index: -1;
+}
+
+.timer--marker-live {
+  background-color: hsl(100,100%,50%);
+  z-index: 1;
+}
+
+.timer--btn-resume,
+.timer--btn-clear {
+  padding: 1rem;
+  margin: 0 .5rem;
+}
+
+.timer-time-spent {
+  margin: 0 0 .5rem;
+  padding: 0;
+  opacity: 0.5;
+  font-size: smaller;
+}
