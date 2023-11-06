@@ -30,25 +30,6 @@ stopwatch-timer h1 {
   content: ':';
 }
 
-.timer--marker,
-.timer--marker-live {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -.9vmin;
-  display: block;
-  height: 6vmin;
-  width: 1.8vmin;
-  background-color: hsl(300,33%,15%);
-  transform-origin: 50% 50vmin;
-  z-index: -1;
-}
-
-.timer--marker-live {
-  background-color: hsl(100,100%,50%);
-  z-index: 1;
-}
-
 .timer--btn-resume,
 .timer--btn-clear {
   padding: 1rem;

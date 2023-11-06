@@ -1,22 +1,10 @@
 export class VisualClock extends HTMLElement {
 
-  anglePad = 3
+  static observedAttributes = ["data-progress", "data-divisions", "data-fill"];
 
-  style = `
-    
-    .visual-clock-unit {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      margin-left: -.9vmin;
-      display: block;
-      height: 6vmin;
-      width: 1.8vmin;
-      background-color: var(--c4);
-      transform-origin: 50% 50%;
-      z-index: -1;
-    }
-  `
+  anglePad = 3
+  color1 = 'hsl(300,33%,15%)'
+  color2 = 'hsl(100,100%,50%)'
 
   constructor() {
     super()
@@ -26,13 +14,13 @@ export class VisualClock extends HTMLElement {
     this.render()
   }
 
-  generateWedge(startAngle, endAngle){
+  generateWedge(startAngle, endAngle, color){
     var x1 = 50 + (50 * Math.cos(Math.PI * startAngle/180))
     var y1 = 50 + (50 * Math.sin(Math.PI * startAngle/180))
     var x2 = 50 + (50 * Math.cos(Math.PI * endAngle/180))
     var y2 = 50 + (50 * Math.sin(Math.PI * endAngle/180))
 
-    return `<path d="M50 50 L${x1} ${y1} A50 50 0 0 1 ${x2} ${y2} z" fill="pink" />`
+    return `<path id="" d="M50 50 L${x1} ${y1} A50 50 0 0 1 ${x2} ${y2} z" fill="${color}" />`
   }
 
   drawTimeUnits() {
@@ -43,7 +31,11 @@ export class VisualClock extends HTMLElement {
     for (let i = 1; i <= this.dataset.divisions; i++) {
       const angleEnd = angle * i
       const angleStart = angleEnd - angle + this.anglePad
-      paths += this.generateWedge(angleStart, angleEnd)
+      let color = this.color1
+      if (this.dataset.progress < i) {
+        color = this.color2
+      }
+      paths += this.generateWedge(angleStart, angleEnd, color)
     }
     return paths
   }
@@ -63,5 +55,15 @@ export class VisualClock extends HTMLElement {
       </svg>
     `
   }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch(name) {
+      case "data-progress":
+        if (oldValue !== newValue) {
+          this.render()
+        }
+        break
+    }
+  } 
 
 }

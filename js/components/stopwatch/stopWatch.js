@@ -2,6 +2,7 @@ export class StopWatch extends HTMLElement {
 
     // Properties
     global_state
+    ui_visual_clock
     ui_start_btn
     ui_stop_btn
     ui_resume_btn
@@ -23,14 +24,6 @@ export class StopWatch extends HTMLElement {
     connectedCallback() {
 
       this.render()
-
-      this.ui_start_btn = document.querySelector('.timer--btn-start')
-      this.ui_stop_btn = document.querySelector('.timer--btn-stop')
-      this.ui_resume_btn = document.querySelector('.timer--btn-resume')
-      this.ui_clear_btn = document.querySelector('.timer--btn-clear')
-      this.ui_sec_el = document.querySelector('.timer-time--seconds')
-      this.ui_min_el = document.querySelector('.timer-time--minutes')
-      this.ui_hrs_el = document.querySelector('.timer-time--hours')
 
       this.ui_start_btn.addEventListener('click', this.startTimer.bind(this))
       this.ui_stop_btn.addEventListener('click', this.stopTimer.bind(this))
@@ -79,6 +72,14 @@ export class StopWatch extends HTMLElement {
           <button class="primary timer--btn-clear" style="display: none;">Clear</button>
         </div>        
       `
+      this.ui_visual_clock = document.querySelector('visual-clock')
+      this.ui_start_btn = document.querySelector('.timer--btn-start')
+      this.ui_stop_btn = document.querySelector('.timer--btn-stop')
+      this.ui_resume_btn = document.querySelector('.timer--btn-resume')
+      this.ui_clear_btn = document.querySelector('.timer--btn-clear')
+      this.ui_sec_el = document.querySelector('.timer-time--seconds')
+      this.ui_min_el = document.querySelector('.timer-time--minutes')
+      this.ui_hrs_el = document.querySelector('.timer-time--hours')
     }
 
     startTimer() {
@@ -139,15 +140,21 @@ export class StopWatch extends HTMLElement {
       this.ui_sec_el.innerHTML = this.dispNum(secs)
       this.ui_min_el.innerHTML = this.dispNum(mins)
       this.ui_hrs_el.innerHTML = this.dispNum(hrs)
+      this.updateClock(secs)
+    }
+
+    updateClock(progress) {
+      this.ui_visual_clock.dataset.progress = progress
     }
 
     ticktock() {
       if (this.global_state.engaged) {
         this.global_state.local_elapsed = Date.now() - this.global_state.started
-        this.updateTime(( this.global_state.elapsed + this.global_state.local_elapsed ))
-          setTimeout(() => {
-            this.ticktock()
-          }, 200)
+        const newElapsed = this.global_state.elapsed + this.global_state.local_elapsed
+        this.updateTime(newElapsed)
+        setTimeout(() => {
+          this.ticktock()
+        }, 200)
       } else {
           return false
       }
