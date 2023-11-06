@@ -1,7 +1,7 @@
 workout-timer {
   order: 1;
   height: calc(100vh - 2rem);
-  width: auto;
+  width: 100vw;
   padding: 1rem;
   aspect-ratio: 1;
 }
@@ -70,4 +70,35 @@ workout-timer {
 
 .pause-msg {
   background-color: var(--transparentcolor1);
+}
+
+.timer-program {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.timer-program > p {
+  color: var(--c4);
+}
+
+.timer-change-button,
+.timer-go-button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 0 0 1rem;
+}
+
+.timer-go-button {
+  padding-top: 2rem;
+}
+
+.timer-save-button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }

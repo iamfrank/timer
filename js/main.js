@@ -1,6 +1,8 @@
 import { WorkoutTimer } from './components/workouttimer/workoutTimer.js'
 import { StopWatch } from './components/stopwatch/stopWatch.js'
+import { VisualClock } from './components/visualclock/visualClock.js'
 
+customElements.define('visual-clock', VisualClock)
 customElements.define('workout-timer', WorkoutTimer)
 customElements.define('stopwatch-timer', StopWatch)
 

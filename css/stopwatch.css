@@ -1,20 +1,18 @@
 stopwatch-timer {
   order: 1;
-  height: calc(100vh - 2rem);
-  width: auto;
+  height: calc(100vmin - 3rem);
+  width: calc(100vmin - 3rem);
   padding: 1rem;
   aspect-ratio: 1;
-}
-
-#timer {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
   position: relative;
+}
+
+stopwatch-timer h1 {
+  margin: 0;
 }
 
 .timer-time {
@@ -42,7 +40,7 @@ stopwatch-timer {
   height: 6vmin;
   width: 1.8vmin;
   background-color: hsl(300,33%,15%);
-  transform-origin: 50% 45vmin;
+  transform-origin: 50% 50vmin;
   z-index: -1;
 }
 
@@ -64,34 +62,11 @@ stopwatch-timer {
   font-size: smaller;
 }
 
-.timer-program {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-around;
-  margin: 1rem 0;
-  gap: 1rem;
-}
-
-.timer-program > p {
-  color: var(--c4);
-}
-
-.timer-change-button,
-.timer-go-button {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  padding: 0 0 1rem;
-}
-
-.timer-go-button {
-  padding-top: 2rem;
-  border-top: solid 1px var(--c3);
-}
-
-.timer-save-button {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+.timer--backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }

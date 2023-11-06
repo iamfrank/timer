@@ -2,7 +2,6 @@ export class StopWatch extends HTMLElement {
 
     // Properties
     global_state
-    ui_timer
     ui_start_btn
     ui_stop_btn
     ui_resume_btn
@@ -10,7 +9,6 @@ export class StopWatch extends HTMLElement {
     ui_sec_el
     ui_min_el
     ui_hrs_el
-    ui_marker
     update_event = new CustomEvent("timerupdate", {
       detail: {
         state: this.global_state
@@ -26,7 +24,6 @@ export class StopWatch extends HTMLElement {
 
       this.render()
 
-      this.ui_timer = document.querySelector('#timer')
       this.ui_start_btn = document.querySelector('.timer--btn-start')
       this.ui_stop_btn = document.querySelector('.timer--btn-stop')
       this.ui_resume_btn = document.querySelector('.timer--btn-resume')
@@ -34,19 +31,11 @@ export class StopWatch extends HTMLElement {
       this.ui_sec_el = document.querySelector('.timer-time--seconds')
       this.ui_min_el = document.querySelector('.timer-time--minutes')
       this.ui_hrs_el = document.querySelector('.timer-time--hours')
-      this.ui_marker = document.querySelector('.timer--marker-live')
 
       this.ui_start_btn.addEventListener('click', this.startTimer.bind(this))
       this.ui_stop_btn.addEventListener('click', this.stopTimer.bind(this))
       this.ui_resume_btn.addEventListener('click', this.resumeTimer.bind(this))
       this.ui_clear_btn.addEventListener('click', this.clearTimer.bind(this))
-
-      for (let i = 0; i < 60; i++) {
-        let notch = document.createElement('span')
-        notch.setAttribute('class', 'timer--marker')
-        notch.style.transform = `rotate(${ i * 6 }deg)`
-        this.ui_timer.appendChild(notch)
-      }
 
       if (this.global_state.engaged === true) {
         this.ui_start_btn.style.display = 'none'
@@ -73,26 +62,22 @@ export class StopWatch extends HTMLElement {
 
     render() {
       this.innerHTML = `
-        <article id="timer">
+        <h1>Stopwatch</h1>
 
-          <h1>Stopwatch</h1>
+        <visual-clock data-divisions="60" data-progress="0" data-fill></visual-clock>
 
-          <p class="timer-time">
-            <span class="timer-time--hours" title="hours">00</span>
-            <span class="timer-time--minutes" title="minutes">00</span>
-            <span class="timer-time--seconds" title="seconds">00</span>
-          </p>
+        <p class="timer-time">
+          <span class="timer-time--hours" title="hours">00</span>
+          <span class="timer-time--minutes" title="minutes">00</span>
+          <span class="timer-time--seconds" title="seconds">00</span>
+        </p>
 
-          <button class="primary timer--btn-start">Start</button>
-          <button class="primary timer--btn-stop" style="display: none;">Stop</button>
-          <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
-            <button class="primary timer--btn-resume" style="display: none;">Resume</button>
-            <button class="primary timer--btn-clear" style="display: none;">Clear</button>
-          </div>
-
-          <span class="timer--marker-live"></span>
-
-        </article>
+        <button class="primary timer--btn-start">Start</button>
+        <button class="primary timer--btn-stop" style="display: none;">Stop</button>
+        <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
+          <button class="primary timer--btn-resume" style="display: none;">Resume</button>
+          <button class="primary timer--btn-clear" style="display: none;">Clear</button>
+        </div>        
       `
     }
 
@@ -154,7 +139,6 @@ export class StopWatch extends HTMLElement {
       this.ui_sec_el.innerHTML = this.dispNum(secs)
       this.ui_min_el.innerHTML = this.dispNum(mins)
       this.ui_hrs_el.innerHTML = this.dispNum(hrs)
-      this.ui_marker.style.transform = `rotate(${ secs * 6 }deg)`
     }
 
     ticktock() {
