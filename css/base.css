@@ -3,6 +3,7 @@
   --c2: hsl(300,100%,50%);
   --c3: hsl(300,100%,33%);
   --c4: hsl(100,100%,50%);
+  --c5: hsl(300,33%,15%);
 }
 
 * {
@@ -113,4 +114,17 @@ input {
   color: #fff;
   border-radius: 1.5rem;
   font-size: 1.25rem;
+}
+
+[hidden] {
+  display: none;
+}
+
+visual-clock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }

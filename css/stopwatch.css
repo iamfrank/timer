@@ -1,7 +1,7 @@
 stopwatch-timer {
   order: 1;
-  height: calc(100vmin - 3rem);
-  width: calc(100vmin - 3rem);
+  height: calc(100vmin - 8rem);
+  width: calc(100vmin - 8rem);
   padding: 1rem;
   aspect-ratio: 1;
   display: flex;
@@ -9,6 +9,7 @@ stopwatch-timer {
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-top: 2rem;
 }
 
 stopwatch-timer h1 {
@@ -34,20 +35,4 @@ stopwatch-timer h1 {
 .timer--btn-clear {
   padding: 1rem;
   margin: 0 .5rem;
-}
-
-.timer-time-spent {
-  margin: 0 0 .5rem;
-  padding: 0;
-  opacity: 0.5;
-  font-size: smaller;
-}
-
-.timer--backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
 }

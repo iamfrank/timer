@@ -57,7 +57,7 @@ export class StopWatch extends HTMLElement {
       this.innerHTML = `
         <h1>Stopwatch</h1>
 
-        <visual-clock data-divisions="60" data-progress="0" data-fill></visual-clock>
+        <visual-clock data-divisions="60" data-progress="0"></visual-clock>
 
         <p class="timer-time">
           <span class="timer-time--hours" title="hours">00</span>

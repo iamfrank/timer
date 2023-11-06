@@ -1,17 +1,15 @@
 workout-timer {
   order: 1;
-  height: calc(100vh - 2rem);
-  width: 100vw;
+  height: calc(100vmin - 8rem);
+  width: calc(100vmin - 8rem);
   padding: 1rem;
   aspect-ratio: 1;
-}
-
-.workout-timer-wrapper {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: center;
+  position: relative;
+  margin-top: 2rem;
 }
 
 .clockwrapper {

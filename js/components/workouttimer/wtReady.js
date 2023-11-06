@@ -27,7 +27,7 @@ export class WTReady extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <h1>Workout timer</h1>
+      <h1>Workout</h1>
       <section class="timer-program">
         <p>${ this.state.intervals } reps</p>
         <dl>
