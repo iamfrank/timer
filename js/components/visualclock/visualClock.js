@@ -25,7 +25,7 @@ export class VisualClock extends HTMLElement {
     var x2 = (50 * Math.sin(Math.PI * endAngle/180)) + 50
     var y2 = (50 * -Math.cos(Math.PI * endAngle/180)) + 50
 
-    return `<path id="" d="M50 50 L${x1} ${y1} A50 50 0 0 1 ${x2} ${y2} z" fill="${color}" />`
+    return `<path d="M50 50 L${x1} ${y1} A50 50 0 0 0 ${x2} ${y2} z" fill="${color}" />`
   }
 
   drawTimeUnits() {
