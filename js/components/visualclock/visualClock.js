@@ -33,13 +33,16 @@ export class VisualClock extends HTMLElement {
     const angle = 360 / this.dataset.divisions
     let paths = ""
     // Return a number of paths using these angles
-    for (let i = 0; i < this.dataset.divisions; i++) {
+    for (let i = 0; i <= this.dataset.divisions; i++) {
       const angleEnd = angle * i
       const angleStart = angleEnd + angle - this.anglePad
       const progress = Number(this.dataset.progress)
       let color = this.color1
-      if (this.dataset.fill !== undefined && progress >= i || progress === i) {
-        color = this.color2  
+      if (this.dataset.fill !== undefined && progress > i) {
+        color = this.color2
+      } else if (this.dataset.fill === undefined && progress >= i) {
+        console.log('go', progress, i)
+        color = this.color2
       }
       paths += this.generateWedge(angleStart, angleEnd, color)
     }
