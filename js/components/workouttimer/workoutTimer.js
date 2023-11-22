@@ -18,6 +18,8 @@ export class WorkoutTimer extends HTMLElement {
   connectedCallback() {
     this.state = getState()
     this.render()
+
+    window.addEventListener('statechange', this.stateChangeHandler.bind(this))
   }
 
   render() {
@@ -27,6 +29,10 @@ export class WorkoutTimer extends HTMLElement {
       <wt-set hidden></wt-set>
       <wt-work hidden></wt-work>
     `
+  }
+
+  stateChangeHandler(event) {
+    console.log('state changed', event)
   }
   
 }

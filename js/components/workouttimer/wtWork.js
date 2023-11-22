@@ -32,7 +32,7 @@ export class WTWork extends HTMLElement {
   connectedCallback() {
     this.innerHTML = this.#template
     this.#messageElement = this.querySelector('.message')
-    this.#clockElement = this.querySelector('.clock')
+    this.#clockElement = document.querySelector('workout-timer visual-clock')
     this.#countdownElement = this.querySelector('.countdown')
     this.querySelector('#endBtn').addEventListener('click', this.handleEnd.bind(this))
   }
@@ -65,7 +65,7 @@ export class WTWork extends HTMLElement {
     return program
   }
   
-  #updateClock(phase, elapsedTime, idx, length) {
+  #updateTextClock(phase, elapsedTime, idx, length) {
     const msg = phase[1] ? 'Work' : 'Pause'
     this.#messageElement.innerHTML = `
       <p class="${ phase[1] ? 'work-msg' : 'pause-msg'}">${ msg }</p>
@@ -74,8 +74,11 @@ export class WTWork extends HTMLElement {
       </p>
     `
     this.#countdownElement.innerText = elapsedTime
-    const pieSliceValue = elapsedTime / phase[0] * Math.PI * 2
-    this.#updatePieSlice(this.#clockElement, 0, pieSliceValue)
+  }
+
+  #updateVisualClock(elapsedTime, phase) {
+    this.#clockElement.dataset.divisions = phase[0]
+    this.#clockElement.dataset.progress = elapsedTime
   }
   
   #runWorkout(idx, elapsed) {
@@ -86,7 +89,8 @@ export class WTWork extends HTMLElement {
 
     const phase = this.#program[idx]
     if (this.#program.length > idx) {
-      this.#updateClock(phase, elapsed, idx, this.#program.length)
+      this.#updateTextClock(phase, elapsed, idx, this.#program.length)
+      this.#updateVisualClock(elapsed, phase)
       setTimeout(() => {
         const new_elapsed = elapsed + 1
         if (new_elapsed > phase[0]) {
@@ -102,29 +106,4 @@ export class WTWork extends HTMLElement {
       return false
     }
   }
-
-  // Function to update the pie slice angles
-  #updatePieSlice(element, startAngle, endAngle) {
-    const radius = 100;
-    const centerX = 100;
-    const centerY = 100;
-
-    const startX = centerX + radius * Math.cos(startAngle);
-    const startY = centerY + radius * Math.sin(startAngle);
-
-    const endX = centerX + radius * Math.cos(endAngle);
-    const endY = centerY + radius * Math.sin(endAngle);
-
-    const largeArcFlag = endAngle - startAngle <= Math.PI ? 0 : 1;
-
-    const pathData = [
-      `M ${centerX} ${centerY}`,
-      `L ${startX} ${startY}`,
-      `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`,
-      'Z'
-    ].join(' ')
-
-    element.querySelector('path').setAttribute('d', pathData)
-  }
-  
 }

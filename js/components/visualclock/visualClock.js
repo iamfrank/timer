@@ -1,8 +1,8 @@
 export class VisualClock extends HTMLElement {
 
-  static observedAttributes = ["data-progress", "data-divisions", "data-fill"];
+  static observedAttributes = ["data-progress", "data-divisions", "data-fill"]
 
-  anglePad = 3
+  anglePad = 3.4
   color1
   color2
   componentId
@@ -28,23 +28,36 @@ export class VisualClock extends HTMLElement {
     return `<path d="M50 50 L${x1} ${y1} A50 50 0 0 0 ${x2} ${y2} z" fill="${color}" />`
   }
 
+  colorFill(progress, idx) {
+    if (progress > idx) {
+      return this.color2
+    } else {
+      return this.color1
+    }
+  }
+
+  colorNoFill(progress, idx, divisions) {
+    if (progress === idx) {
+      return this.color2
+    } else if (progress === 0 && idx === divisions) {
+      return this.color2
+    } else {
+      return this.color1
+    }
+  }
+
   drawTimeUnits() {
+    const divisions = Number(this.dataset.divisions)
+    const colorFunc = this.dataset.fill === undefined ? this.colorNoFill.bind(this) : this.colorFill.bind(this)
     // Calculate starting/stopping angles based on divisions
-    const angle = 360 / this.dataset.divisions
+    const angle = 360 / divisions
     let paths = ""
     // Return a number of paths using these angles
-    for (let i = 0; i <= this.dataset.divisions; i++) {
+    for (let i = 0; i < divisions; i++) {
       const angleEnd = angle * i
       const angleStart = angleEnd + angle - this.anglePad
       const progress = Number(this.dataset.progress)
-      let color = this.color1
-      if (this.dataset.fill !== undefined && progress > i) {
-        color = this.color2
-      } else if (this.dataset.fill === undefined && progress >= i) {
-        console.log('go', progress, i)
-        color = this.color2
-      }
-      paths += this.generateWedge(angleStart, angleEnd, color)
+      paths += this.generateWedge(angleStart, angleEnd, colorFunc(progress, i, divisions))
     }
     return paths
   }
@@ -54,7 +67,7 @@ export class VisualClock extends HTMLElement {
       <svg width="100%" height="100%" viewBox="0 0 100 100">
         <mask id="${this.componentId}">
           <circle cx="50" cy="50" r="50" fill="white" />
-          <circle cx="50" cy="50" r="42" fill="black" />
+          <circle cx="50" cy="50" r="44" fill="black" />
         </mask>
         <g mask="url(#${this.componentId})">
           ${ this.drawTimeUnits() }
@@ -66,9 +79,7 @@ export class VisualClock extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch(name) {
       case "data-progress":
-        if (oldValue !== newValue) {
-          this.render()
-        }
+        this.render()
         break
       case "data-divisions":
         if (oldValue !== newValue) {

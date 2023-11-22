@@ -1,4 +1,4 @@
-const localstoragekey = 'iamfrankWorkoutTimer1'
+const localstoragekey = 'iamfrankTimerAppV1.0.0'
 const defaults = {
   worktime: 30,
   breaktime: 10,
