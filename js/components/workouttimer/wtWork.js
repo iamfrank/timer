@@ -89,14 +89,18 @@ export class WTWork extends HTMLElement {
 
     const phase = this.#program[idx]
     if (this.#program.length > idx) {
+
+      if (elapsed === 0) {
+        phase[1] ? beepStart() : beepEnd()
+      }
+
       this.#updateTextClock(phase, elapsed, idx, this.#program.length)
       this.#updateVisualClock(elapsed, phase)
+      
       setTimeout(() => {
         const new_elapsed = elapsed + 1
         if (new_elapsed > phase[0]) {
-          phase[1] ? beepStart() : beepEnd()
-          const new_idx = idx + 1
-          this.#runWorkout(new_idx, 0)
+          this.#runWorkout(idx + 1, 0)
         } else {
           this.#runWorkout(idx, new_elapsed)
         }
