@@ -1,12 +1,12 @@
 {
-  "name": "Stopwatch v1.1",
-  "short_name": "Stopwatch",
+  "name": "Timer v2.0",
+  "short_name": "Timer",
   "lang": "en-us",
-  "description": "Time tracking app by iamfrank",
+  "description": "Time tracking and workout timer app by iamfrank",
   "start_url": "./index.html",
-  "id": "/stopwatch",
+  "id": "/timer",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "portrait",
   "theme_color": "#ff00ff",
   "background_color": "#130613",
   "icons": [

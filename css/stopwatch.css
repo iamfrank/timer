@@ -1,0 +1,38 @@
+stopwatch-timer {
+  order: 1;
+  height: calc(100vmin - 8rem);
+  width: calc(100vmin - 8rem);
+  padding: 1rem;
+  aspect-ratio: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 2rem;
+}
+
+stopwatch-timer h1 {
+  margin: 0;
+}
+
+.timer-time {
+  font-size: 12vmin;
+  font-weight: bold;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: .75rem 0 0;
+  padding: 0;
+  font-family: monospace;
+}
+
+.timer-time--minutes::before,
+.timer-time--minutes::after {
+  content: ':';
+}
+
+.timer--btn-resume,
+.timer--btn-clear {
+  padding: 1rem;
+  margin: 0 .5rem;
+}

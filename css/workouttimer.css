@@ -1,0 +1,79 @@
+workout-timer {
+  order: 1;
+  height: calc(100vmin - 8rem);
+  width: calc(100vmin - 8rem);
+  padding: 1rem;
+  aspect-ratio: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 2rem;
+}
+
+wt-work {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  text-align: center;
+}
+
+.clockwrapper {
+  height: 20vmin;
+  text-align: center;
+  font-size: 7rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.rep-msg {
+  margin: 0;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.work-msg,
+.pause-msg {
+  font-size: 3rem;
+  background-color: var(--c3);
+  padding: 1rem;
+  width: 100%;
+  margin: 0 0 1rem;
+}
+
+.pause-msg {
+  background-color: var(--c4);
+  color: var(--c1);
+}
+
+.timer-program {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.timer-program > p {
+  color: var(--c4);
+}
+
+.timer-change-button,
+.timer-go-button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 0 0 1rem;
+}
+
+.timer-go-button {
+  padding-top: 2rem;
+}
+
+.timer-save-button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
