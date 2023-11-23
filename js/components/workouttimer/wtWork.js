@@ -15,10 +15,7 @@ export class WTWork extends HTMLElement {
     <section id="status">
       <div class="message">Get ready!</div>
       <p class="clockwrapper">
-        <svg class="clock" viewbox="0 0 200 200">
-          <path id="pieSlice"></path>
-        </svg>
-        <span class="countdown"></span>
+        <span class="countdown"></span>:00
       </p>
     </section>
     <button id="endBtn" class="primary">End</button>
@@ -53,7 +50,7 @@ export class WTWork extends HTMLElement {
     this.#sLoc.enable()
     this.#program = this.#compileProgram(this.#state)
     this.#workoutRunning = true
-    setTimeout(this.#runWorkout(0,0), 3000)
+    this.#runWorkout(0,0)
   }
   
   #compileProgram(dataset) {
@@ -64,6 +61,16 @@ export class WTWork extends HTMLElement {
     } 
     return program
   }
+
+  #formatElapsedTime(time, duration) {
+    console.log(time, duration)
+    const timeRemaining = duration - time
+    if (timeRemaining < 10) {
+      return '0' + timeRemaining
+    } else {
+      return timeRemaining
+    }
+  }
   
   #updateTextClock(phase, elapsedTime, idx, length) {
     const msg = phase[1] ? 'Work' : 'Pause'
@@ -73,7 +80,7 @@ export class WTWork extends HTMLElement {
         Rep <span>${ Math.ceil((idx + 1) / 2) }/${ length / 2 }</span>
       </p>
     `
-    this.#countdownElement.innerText = elapsedTime
+    this.#countdownElement.innerText = this.#formatElapsedTime(elapsedTime, Number(phase[0]))
   }
 
   #updateVisualClock(elapsedTime, phase) {
