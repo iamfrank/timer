@@ -1,15 +1,14 @@
 stopwatch-timer {
+  --stopwatch-size: 85vmin;
   order: 1;
-  height: calc(100vmin - 8rem);
-  width: calc(100vmin - 8rem);
+  height: var(--stopwatch-size);
+  width: var(--stopwatch-size);
   padding: 1rem;
-  aspect-ratio: 1;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 2rem;
 }
 
 stopwatch-timer h1 {

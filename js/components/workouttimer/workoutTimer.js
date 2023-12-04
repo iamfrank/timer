@@ -26,7 +26,6 @@ export class WorkoutTimer extends HTMLElement {
     this.innerHTML = `
       <visual-clock data-divisions="${ this.state.worktime }" data-progress="0" data-fill></visual-clock>
       <wt-ready></wt-ready>
-      <wt-set hidden></wt-set>
       <wt-work hidden></wt-work>
     `
   }

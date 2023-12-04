@@ -1,11 +1,15 @@
 #navbar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
   order: 2;
   height: 2rem;
   width: 100%;
   display: flex;
   flex-direction: row nowrap;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 #navbar button {

@@ -22,7 +22,6 @@ export class WTSet extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <h1>Change workout</h1>
       <form>
         <fieldset>
           <label for="worktime">Workout duration</label>

@@ -28,18 +28,7 @@ export class WTReady extends HTMLElement {
   render() {
     this.innerHTML = `
       <h1>Workout</h1>
-      <section class="timer-program">
-        <p>${ this.state.intervals } reps</p>
-        <dl>
-          <dt>Work</dt>
-          <dd>${ this.state.worktime } seconds</dd>
-          <dt>Break</dt>
-          <dd>${ this.state.breaktime } seconds</dd>
-        </dl>
-      </section>
-      <p class="timer-change-button">
-        <button id="changeBtn" class="secondary">Change</button>
-      </p>
+      <wt-set></wt-set>
       <p class="timer-go-button">
         <button id="goBtn" class="primary">Go</button>
       </p>

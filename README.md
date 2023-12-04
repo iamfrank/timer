@@ -1,6 +1,6 @@
 # Simple Timer webapp
 
-[Here is a demo of a simple timer app](https://iamfrank.github.io/stopwatch/) that uses web technologies.
+[Here is a demo of a simple timer app](https://iamfrank.github.io/timer/) that uses web technologies.
 
 ## Offline capable
 
