@@ -19,15 +19,15 @@ export class WTSet extends HTMLElement {
       <form>
         <fieldset>
           <label for="worktime">Workout duration</label>
-          <input id="worktime" type="number" value="${ this.state.worktime }">
+          <input id="worktime" type="number" step="1" value="${ this.state.worktime }">
         </fieldset>
         <fieldset>
           <label for="breaktime">Pause duration</label>
-          <input id="breaktime" type="number" value="${ this.state.breaktime }">
+          <input id="breaktime" type="number" step="1" value="${ this.state.breaktime }">
         </fieldset>
         <fieldset>
           <label for="intervals">Sets</label>
-          <input id="intervals" type="number" value="${ this.state.intervals }">
+          <input id="intervals" type="number" step="1" value="${ this.state.intervals }">
         </fieldset>
       </form>
     `

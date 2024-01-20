@@ -1,4 +1,4 @@
-const cacheName = 'timer-v2.3'
+const cacheName = 'timer-v2.4'
 const contentToCache = [
   '/timer/index.html',
   '/timer/js/main.js',
