@@ -1,15 +1,15 @@
 workout-timer {
   order: 1;
-  height: calc(100vmin - 8rem);
-  width: calc(100vmin - 8rem);
-  padding: 1rem;
-  aspect-ratio: 1;
+  max-height: calc(100vh - 7rem);
+  max-width: calc(100vw - 4rem);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 2rem;
+  text-align: center;
 }
 
 wt-work {
@@ -17,6 +17,20 @@ wt-work {
   flex-flow: column nowrap;
   align-items: center;
   text-align: center;
+}
+
+wt-ready {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+wt-work {
+  display: flex;
+  height: 100%;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .clockwrapper {
@@ -35,11 +49,16 @@ wt-work {
 
 .work-msg,
 .pause-msg {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  font-weight: bold;
   background-color: var(--c3);
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   width: 100%;
   margin: 0 0 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .pause-msg {
@@ -58,22 +77,4 @@ wt-work {
 
 .timer-program > p {
   color: var(--c4);
-}
-
-.timer-change-button,
-.timer-go-button {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  padding: 0 0 1rem;
-}
-
-.timer-go-button {
-  padding-top: 2rem;
-}
-
-.timer-save-button {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
 }

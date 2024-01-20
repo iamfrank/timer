@@ -6,16 +6,17 @@ customElements.define('visual-clock', VisualClock)
 customElements.define('workout-timer', WorkoutTimer)
 customElements.define('stopwatch-timer', StopWatch)
 
-const navbarElement = document.querySelector('#navbar')
+const stopwatchButton = document.querySelector('[title="Stopwatch"]')
 const stopwatchElement = document.querySelector('stopwatch-timer')
+const workoutButton = document.querySelector('[title="Workout timer"]')
 const workoutElement = document.querySelector('workout-timer')
 
-navbarElement.addEventListener('click', function(event) {
-  if (event.target.innerText === 'Stopwatch') {
-    workoutElement.hidden = true
-    stopwatchElement.hidden = false
-  } else if (event.target.innerText === 'Workout') {
-    stopwatchElement.hidden = true
-    workoutElement.hidden = false
-  }
+stopwatchButton.addEventListener('click', function(event) {
+  workoutElement.hidden = true
+  stopwatchElement.hidden = false
+})
+
+workoutButton.addEventListener('click', function(event) {
+  stopwatchElement.hidden = true
+  workoutElement.hidden = false
 })

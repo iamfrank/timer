@@ -4,6 +4,7 @@
   --c3: hsl(300,100%,33%);
   --c4: hsl(100,100%,50%);
   --c5: hsl(300,33%,15%);
+  --c6: hsl(100,100%,15%);
 }
 
 * {
@@ -30,7 +31,7 @@ body {
 
 h1 {
   font-size: 1.66rem;
-  margin: 5vmin 0 0;
+  margin: 0;
   padding: 0 1vmin 0 0.25vmin;
   text-transform: lowercase;
   font-weight: 900;
@@ -53,16 +54,25 @@ button {
 
 button.primary {
   background-color: var(--c2);
-  padding: 1rem 1.5rem;
-  color: #000;
-  font-size: 1.25em;
-  text-transform: uppercase;
   box-shadow: 0 0 3rem 1rem var(--c3);
+  border-radius: 2rem;
+  padding: 0;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button.primary:hover,
 button.primary:active {
   box-shadow: 0 0 0 0.5rem var(--c3);
+}
+
+button.primary svg {
+  width: 66%;
+  fill: var(--c1);
+  height: auto;
 }
 
 button.secondary {
@@ -108,12 +118,17 @@ label {
 }
 
 input {
-  border: solid 0.125rem var(--c3);
-  padding: 0.5rem 1.5rem;
-  background-color: transparent;
-  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 1.75rem;
   border-radius: 1.5rem;
   font-size: 1.25rem;
+  width: 10rem;
+  text-align: center;
+  background-color: var(--c4);
+  color: var(--c1);
+  font-family: monospace;
+  box-shadow: 0 0 1rem 0.5rem var(--c6);
+  font-weight: bold;
 }
 
 [hidden] {
@@ -126,6 +141,6 @@ visual-clock {
   left: 0;
   width: 100%;
   height: 100%;
-  max-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 8rem);
   z-index: -1;
 }

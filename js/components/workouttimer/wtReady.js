@@ -17,24 +17,19 @@ export class WTReady extends HTMLElement {
     this.setEl = document.querySelector('wt-set')
     
     this.render()
-
-    window.addEventListener('statechange', this.handleStateChange.bind(this))
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('statechange', this.handleStateChange)
   }
 
   render() {
     this.innerHTML = `
-      <h1>Workout</h1>
+      <h1>Workout timer</h1>
       <wt-set></wt-set>
-      <p class="timer-go-button">
-        <button id="goBtn" class="primary">Go</button>
-      </p>
+      <button class="primary" title="Go" id="goBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M320-200v-560l440 280-440 280Z"/>
+        </svg>
+      </button>
     `
     this.querySelector('#goBtn').addEventListener('click', this.handleGo.bind(this))
-    this.querySelector('#changeBtn').addEventListener('click', this.handleChange.bind(this))
   }
   
   handleGo(event) {
@@ -46,11 +41,6 @@ export class WTReady extends HTMLElement {
   handleChange(event) {
     this.hidden = true
     this.setEl.hidden = false
-  }
-
-  handleStateChange(event) {
-    this.state = getState()
-    this.render()
   }
 
 }
