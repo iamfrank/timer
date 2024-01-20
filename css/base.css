@@ -144,3 +144,26 @@ visual-clock {
   max-height: calc(100vh - 8rem);
   z-index: -1;
 }
+
+a.timer-github-link {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 3rem;
+  width: 3rem;
+  opacity: 0.66;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.timer-github-link:hover,
+a.timer-github-link:active {
+  opacity: 1;
+}
+
+a.timer-github-link svg {
+  fill: var(--c3);
+  width: 50%;
+  height: auto;
+}
