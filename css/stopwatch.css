@@ -15,12 +15,28 @@ stopwatch-timer h1 {
   margin: 0;
 }
 
+stopwatch-timer button.primary {
+  border-radius: 2rem;
+  padding: 0;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+stopwatch-timer button.primary svg {
+  width: 66%;
+  fill: var(--c1);
+  height: auto;
+}
+
 .timer-time {
   font-size: 12vmin;
   font-weight: bold;
   display: flex;
   flex-flow: row nowrap;
-  margin: .75rem 0 0;
+  margin: .75rem 0 0.5rem;
   padding: 0;
   font-family: monospace;
 }

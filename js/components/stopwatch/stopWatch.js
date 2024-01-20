@@ -34,7 +34,7 @@ export class StopWatch extends HTMLElement {
         this.ui_start_btn.style.display = 'none'
         this.ui_resume_btn.style.display = 'none'
         this.ui_clear_btn.style.display = 'none'
-        this.ui_stop_btn.style.display = 'block'
+        this.ui_stop_btn.style.display = 'flex'
         this.global_state.local_elapsed = Date.now() - this.global_state.started
         this.setState(this.global_state)
         this.updateTime(this.global_state.elapsed)
@@ -42,14 +42,14 @@ export class StopWatch extends HTMLElement {
       } else if (this.global_state.elapsed) {
         this.ui_start_btn.style.display = 'none'
         this.ui_stop_btn.style.display = 'none'
-        this.ui_resume_btn.style.display = 'block'
-        this.ui_clear_btn.style.display = 'block'
+        this.ui_resume_btn.style.display = 'flex'
+        this.ui_clear_btn.style.display = 'flex'
         this.updateTime(this.global_state.elapsed)
       } else {
         this.ui_stop_btn.style.display = 'none'
         this.ui_resume_btn.style.display = 'none'
         this.ui_clear_btn.style.display = 'none'
-        this.ui_start_btn.style.display = 'block'
+        this.ui_start_btn.style.display = 'flex'
       }
     }
 
@@ -65,11 +65,27 @@ export class StopWatch extends HTMLElement {
           <span class="timer-time--seconds" title="seconds">00</span>
         </p>
 
-        <button class="primary timer--btn-start">Start</button>
-        <button class="primary timer--btn-stop" style="display: none;">Stop</button>
+        <button class="primary timer--btn-start" title="Start">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <path d="M320-200v-560l440 280-440 280Z"/>
+          </svg>
+        </button>
+        <button class="primary timer--btn-stop" style="display: none;" title="Stop">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <path d="M240-240v-480h480v480H240Z"/>
+          </svg>
+        </button>
         <div style="display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center;">
-          <button class="primary timer--btn-resume" style="display: none;">Resume</button>
-          <button class="primary timer--btn-clear" style="display: none;">Clear</button>
+          <button class="primary timer--btn-resume" style="display: none;" title="Resume">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+              <path d="M240-240v-480h80v480h-80Zm160 0 400-240-400-240v480Z"/>
+            </svg>
+          </button>
+          <button class="primary timer--btn-clear" style="display: none;" title="Clear">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+              <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+            </svg>
+          </button>
         </div>        
       `
       this.ui_visual_clock = document.querySelector('visual-clock')
